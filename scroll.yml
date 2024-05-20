@@ -22,8 +22,6 @@ services:
       - --datadir
       - /var/lib/l2-geth
       - --scroll
-      - --gcmode
-      - archive
       - --cache.noprefetch
       - --http
       - --http.addr
