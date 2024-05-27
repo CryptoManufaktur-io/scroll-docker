@@ -45,8 +45,6 @@ services:
       - --l1.endpoint
       - ${L1_RPC}
       - --rollup.verify
-      - --gcmode
-      - ${GCMODE}
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
