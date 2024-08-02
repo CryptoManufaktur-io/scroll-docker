@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 __project_name="Scroll Docker"
 __app_name="Scroll node"
-__sample_service="l2-geth"
+__sample_service="l2geth"
 __docker_exe="docker"
 __compose_exe="docker compose"
 __compose_upgraded=0

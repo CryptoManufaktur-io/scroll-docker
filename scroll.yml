@@ -7,7 +7,7 @@ x-logging: &logging
       tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
 
 services:
-  l2-geth:
+  l2geth:
     restart: "unless-stopped"
     image: scrolltech/l2geth:${L2GETH_DOCKER_TAG}
     stop_grace_period: 5m
