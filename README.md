@@ -5,7 +5,7 @@ Docker Compose for Scroll rollup
 Meant to be used with [central-proxy-docker](https://github.com/CryptoManufaktur-io/central-proxy-docker) for traefik
 and Prometheus remote write; use `:ext-network.yml` in `COMPOSE_FILE` inside `.env` in that case.
 
-If you want the l2-geth RPC ports exposed locally, use `scroll-shared.yml` in `COMPOSE_FILE` inside `.env`.
+If you want the l2geth RPC ports exposed locally, use `scroll-shared.yml` in `COMPOSE_FILE` inside `.env`.
 
 The `./scrolld` script can be used as a quick-start:
 
