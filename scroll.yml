@@ -68,6 +68,7 @@ services:
       - metrics.scrape=true
       - metrics.path=/debug/metrics/prometheus
       - metrics.port=6060
+      - metrics.network=scroll
 
 volumes:
   scroll-data:
