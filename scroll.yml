@@ -7,20 +7,36 @@ x-logging: &logging
       tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
 
 services:
+  scroll-init:
+    restart: "no"
+    build:
+      context: ./init
+      dockerfile: Dockerfile
+    image: init:scroll
+    pull_policy: never
+    environment:
+      - SNAPSHOT=${SNAPSHOT:-}
+    volumes:
+      - scroll-data:/var/lib/l2geth
+      - /etc/localtime:/etc/localtime:ro
+
   l2geth:
     restart: "unless-stopped"
     image: scrolltech/l2geth:${L2GETH_DOCKER_TAG}
     stop_grace_period: 5m
     volumes:
-      - scroll-data:/var/lib/l2-geth
+      - scroll-data:/var/lib/l2geth
     environment:
       RUST_LOG: ${LOG_LEVEL}
       CHAIN_ID: "534352"
+    depends_on:
+      scroll-init:
+        condition: service_completed_successfully
     <<: *logging
     entrypoint:
       - geth
       - --datadir
-      - /var/lib/l2-geth
+      - /var/lib/l2geth
       - --scroll
       - --cache.noprefetch
       - --http

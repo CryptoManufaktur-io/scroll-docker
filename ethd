@@ -420,7 +420,7 @@ envmigrate() {
         return
     fi
 
-    ALL_VARS=( COMPOSE_FILE L1_RPC EL_EXTRAS LOG_LEVEL L2GETH_DOCKER_TAG \
+    ALL_VARS=( COMPOSE_FILE L1_RPC EL_EXTRAS SNAPSHOT LOG_LEVEL L2GETH_DOCKER_TAG \
             DOMAIN RPC_HOST RPC_LB WS_HOST WS_LB RPC_PORT WS_PORT )
     OLD_VARS=( )
     NEW_VARS=( )
@@ -576,7 +576,7 @@ version() {
     # Client versions
     case "${value}" in
         *scroll.yml* )
-            docompose exec l2-geth geth version
+            docompose exec l2geth geth version
             ;;&
     esac
 }
