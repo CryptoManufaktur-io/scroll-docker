@@ -60,7 +60,10 @@ services:
       - 0.0.0.0
       - --l1.endpoint
       - ${L1_RPC}
+      - --da.blob.beaconnode
+      - ${L1_BEACON}
       - --rollup.verify
+      - --scroll-mpt
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
