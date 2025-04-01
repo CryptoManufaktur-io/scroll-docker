@@ -25,10 +25,29 @@ if [ -n "${SNAPSHOT}" ] && [ ! -d "${__datadir}/geth/chaindata/" ]; then
   else
     __dont_rm=1
     echo "The snapshot file has a format that ${__project_name} can't handle."
-    echo "Please come to CryptoManufaktur Discord to work through this."
+    echo "Please open a github issue to work through this."
   fi
   if [ "${__dont_rm}" -eq 0 ]; then
     rm -f "${filename}"
+  fi
+  # try to find the directory
+  __search_dir="chaindata"
+  __base_dir="${__datadir}/"
+  __found_path=$(find "$__base_dir" -type d -path "*/$__search_dir" -print -quit)
+  if [ "${__found_path}" = "${__base_dir}chaindata" ]; then
+    echo "Found chaindata in root directory, moving it to geth folder"
+    mkdir -p "$__base_dir/geth"
+    mv "$__found_path" "$__base_dir/geth"
+  elif [ -n "$__found_path" ]; then
+    __geth_dir=$(dirname "$__found_path")
+    __geth_dir=${__geth_dir%/chaindata}
+    if [ "${__geth_dir}" = "${__base_dir}geth" ]; then
+       echo "Snapshot extracted into ${__geth_dir}/chaindata"
+    else
+      echo "Found a geth directory at ${__geth_dir}, moving it."
+      mv "$__geth_dir" "$__base_dir"
+      rm -rf "$__geth_dir"
+    fi
   fi
   if [[ ! -d "${__datadir}"/geth/chaindata ]]; then
     echo "Chaindata isn't in the expected location."
