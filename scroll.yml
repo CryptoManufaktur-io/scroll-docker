@@ -26,14 +26,18 @@ services:
     stop_grace_period: 5m
     volumes:
       - scroll-data:/var/lib/l2geth
+      - ./docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh
     environment:
       RUST_LOG: ${LOG_LEVEL}
       CHAIN_ID: "534352"
+      MPT_NODE: ${MPT_NODE}
+      EXTRAS: ${EXTRAS}
     depends_on:
       scroll-init:
         condition: service_completed_successfully
     <<: *logging
     entrypoint:
+      - docker-entrypoint.sh
       - geth
       - --datadir
       - /var/lib/l2geth
@@ -63,7 +67,6 @@ services:
       - --da.blob.beaconnode
       - ${L1_BEACON}
       - --rollup.verify
-      - --scroll-mpt
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
