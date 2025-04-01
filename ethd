@@ -227,13 +227,11 @@ __get_value_from_env() {
     }
 
     END {
-      if (__found) {
-        # Print here-doc style so we can parse with awk
-        # Print the value as is, including quotes for multi-line
-        print "__value<<EOF"
-        print __value
-        print "EOF"
-      }
+      # Print here-doc style so we can parse with awk
+      # Print the value as is, including quotes for multi-line
+      print "__value<<EOF"
+      print __value
+      print "EOF"
       print "__found=" __found
     }
   ' "$__env_file")
