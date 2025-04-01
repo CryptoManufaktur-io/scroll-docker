@@ -188,6 +188,13 @@ __get_value_from_env() {
       exit
     }
 
+    # Match empty unquoted value
+    $0 ~ "^[ \t]*"var"=$" {
+       __value = ""
+       __found = 1
+       exit
+    }
+
     # Match a quoted single-line value
     $0 ~ "^[ \t]*"var"=\"[^\"]*\"[ \t]*$" {
       gsub("^[ \t]*"var"=\"", "")
