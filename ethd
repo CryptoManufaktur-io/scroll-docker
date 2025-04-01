@@ -35,7 +35,7 @@ __prep_conffiles() {
 
 __warn_l1() {
   __var="L1_RPC"
-  __value=$(__get_value_from_env "${__var}" "${__env_file}")
+  __get_value_from_env "${__var}" "${__env_file}" "__value"
 # Literal match intended
 # shellcheck disable=SC2076
   if [[ "${__value}" =~ "example.com" ]]; then
@@ -43,7 +43,7 @@ __warn_l1() {
     echo
   fi
   __var="L1_BEACON"
-  __value=$(__get_value_from_env "${__var}" "${__env_file}")
+  __get_value_from_env "${__var}" "${__env_file}" "__value"
 # Literal match intended
 # shellcheck disable=SC2076
   if [[ "${__value}" =~ "example.com" ]]; then
