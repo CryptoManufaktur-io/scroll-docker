@@ -233,8 +233,8 @@ __get_value_from_env() {
         print "__value<<EOF"
         print __value
         print "EOF"
-        print "__found=" __found
       }
+      print "__found=" __found
     }
   ' "$__env_file")
 
