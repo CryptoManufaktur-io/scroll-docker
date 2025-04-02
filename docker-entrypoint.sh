@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [ "${MPT_NODE}" = "true" ]; then
-  __mpt="--scroll-mpt"
+  __mpt="--scroll-mpt --gcmode archive"
 else
   __mpt=""
 fi
