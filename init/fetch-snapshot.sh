@@ -3,7 +3,7 @@ set -euo pipefail
 
 __datadir=/var/lib/l2geth
 __project_name="Scroll Docker"
- 
+
 # Prep l2geth datadir
 if [ -n "${SNAPSHOT}" ] && [ ! -d "${__datadir}/geth/chaindata/" ]; then
   __dont_rm=0

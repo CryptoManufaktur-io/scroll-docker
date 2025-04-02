@@ -7,4 +7,5 @@ else
   __mpt=""
 fi
 
+#shellcheck disable=SC2086
 exec "$@" ${__mpt} ${EXTRAS}
