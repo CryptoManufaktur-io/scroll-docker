@@ -90,6 +90,7 @@ __env_migrate() {
     fi
   fi
 
+#shellcheck disable=SC2154
   if [[ "${__keep_targets}" -eq 1 && "${__target_ver}" -le "${__source_ver}" ]]; then # No changes in template, do nothing
     return 0
   fi
@@ -849,7 +850,7 @@ start() {
   fi
   __screen_id=scroll
   rm -f "/tmp/${__screen_id}-compose-screen.log"
-  screen -dmS "${__screen_id}-compose-session" -L -Logfile "/tmp/${__screen_id}-compose-screen.log" ${__compose_exe} up -d --remove-orphans "$@"
+  screen -dmS "${__screen_id}-compose-session" -L -Logfile "/tmp/${__screen_id}-compose-screen.log" "${__compose_exe}" up -d --remove-orphans "$@"
   echo "Running \"docker compose up -d\" in screen because of the init container."
   echo
   echo "If this is your first start and you are getting a SNAPSHOT, you can view the init logs:"
@@ -1028,8 +1029,8 @@ __me="./$(basename "${BASH_SOURCE[0]}")"
 
 trap '__handle_error $? $LINENO' ERR
 
-if [[ "$#" -eq 0 || "$1" == "-h" || "$1" == "--help" ]]; then
-  help
+if [[ "$#" -eq 0 || "$*" =~ "-h" ]]; then # Lazy match for -h and --help but also --histogram, so careful here
+  help "$@"
   exit 0
 fi
 
