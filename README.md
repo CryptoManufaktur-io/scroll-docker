@@ -19,4 +19,4 @@ The `./scrolld` script can be used as a quick-start:
 
 To update the software, run `./scrolld update` and then `./scrolld up`
 
-This is Scroll Docker v2.0.0
+This is Scroll Docker v2.0.1
