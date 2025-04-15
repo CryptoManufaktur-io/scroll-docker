@@ -21,7 +21,7 @@ version() {
 # Adjust for your clients and how to check their version
   case "${__value}" in
     *scroll.yml* )
-        docompose exec l2geth geth version
+        __docompose exec l2geth geth version
         ;;&
   esac
 }
