@@ -25,8 +25,6 @@ case ${LOG_LEVEL} in
     ;;
 esac
 
-__public_ip="--nat=extip:$(wget -qO- https://ifconfig.me/ip)"
-
 if [ -n "${L2GETH_P2P_BOOTNODES}" ]; then
   __bootnodes="--bootnodes=${L2GETH_P2P_BOOTNODES}"
 else
@@ -40,4 +38,4 @@ else
 fi
 
 #shellcheck disable=SC2086
-exec "$@" ${__verbosity} ${__public_ip} ${__bootnodes} ${__mpt} ${EXTRAS}
+exec "$@" ${__verbosity} ${__bootnodes} ${__mpt} ${EXTRAS}
