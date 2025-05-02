@@ -71,8 +71,7 @@ services:
       - --da.blob.beaconnode
       - ${L1_BEACON}
       - --rollup.verify
-      - --snapshot
-      - ${SNAPSHOT_FLAG:-true}
+      - --snapshot=${SNAPSHOT_FLAG:-true}
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
