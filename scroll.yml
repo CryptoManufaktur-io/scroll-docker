@@ -33,9 +33,6 @@ services:
       MPT_NODE: ${MPT_NODE}
       EXTRAS: ${EXTRAS}
       L2GETH_P2P_BOOTNODES: ${L2GETH_P2P_BOOTNODES}
-    ports:
-      - ${P2P_PORT:-30303}:${P2P_PORT:-30303}/tcp
-      - ${P2P_PORT:-30303}:${P2P_PORT:-30303}/udp
     depends_on:
       scroll-init:
         condition: service_completed_successfully
@@ -49,8 +46,6 @@ services:
       - --cache.noprefetch
       - --networkid
       - ${NETWORK_ID:-534352}
-      - --port
-      - ${P2P_PORT:-30303}
       - --http
       - --http.addr
       - 0.0.0.0
@@ -76,6 +71,8 @@ services:
       - --da.blob.beaconnode
       - ${L1_BEACON}
       - --rollup.verify
+      - --snapshot
+      - ${SNAPSHOT_FLAG:-true}
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
