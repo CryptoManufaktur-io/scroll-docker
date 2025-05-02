@@ -67,7 +67,6 @@ services:
       - 0.0.0.0
       - --l1.endpoint
       - ${L1_RPC}
-      - --da.sync=true
       - --da.blob.beaconnode
       - ${L1_BEACON}
       - --rollup.verify
