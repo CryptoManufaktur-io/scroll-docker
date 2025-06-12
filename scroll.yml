@@ -71,6 +71,10 @@ services:
       - ${L1_BEACON}
       - --rollup.verify
       - --snapshot=${SNAPSHOT_FLAG:-true}
+      - --gpo.maxprice
+      - "500000000"
+      - --gpo.congestionthreshold
+      - "1000"
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
