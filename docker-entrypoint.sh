@@ -32,7 +32,7 @@ else
 fi
 
 if [ "${MPT_NODE}" = "true" ]; then
-  __mpt="--scroll-mpt --gcmode archive"
+  __mpt="--scroll-mpt --gcmode archive --syncmode full"
 else
   __mpt=""
 fi
