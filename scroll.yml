@@ -46,6 +46,8 @@ services:
       - --cache.noprefetch
       - --networkid
       - ${NETWORK_ID:-534352}
+      - --gossip.sequencerhttp
+      - ${SEQUENCER:-https://mainnet-sequencer-proxy.scroll.io}
       - --http
       - --http.addr
       - 0.0.0.0
@@ -69,12 +71,12 @@ services:
       - ${L1_RPC}
       - --da.blob.beaconnode
       - ${L1_BEACON}
+      - --da.blob.awss3
+      - ${S3_URL:-https://scroll-mainnet-blob-data.s3.us-west-2.amazonaws.com}
       - --rollup.verify
       - --snapshot=${SNAPSHOT_FLAG:-true}
       - --gpo.maxprice
       - "500000000"
-      - --gpo.congestionthreshold
-      - "1000"
     labels:
       - traefik.enable=true
       - traefik.http.routers.${RPC_HOST:-scroll}.service=${RPC_HOST:-scroll}
