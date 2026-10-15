@@ -7,6 +7,9 @@ and Prometheus remote write; use `:ext-network.yml` in `COMPOSE_FILE` inside `.e
 
 If you want the l2geth RPC ports exposed locally, use `scroll-shared.yml` in `COMPOSE_FILE` inside `.env`.
 
+The l2geth P2P port (`P2P_PORT`, default 30303, tcp and udp) is published on the host so that peers can connect to the node;
+without inbound peers the node depends on the few peers it manages to dial out to.
+
 The `./scrolld` script can be used as a quick-start:
 
 `./scrolld install` brings in docker-ce, if you don't have Docker installed already.

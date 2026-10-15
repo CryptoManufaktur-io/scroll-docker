@@ -33,6 +33,9 @@ services:
       MPT_NODE: ${MPT_NODE}
       EXTRAS: ${EXTRAS}
       L2GETH_P2P_BOOTNODES: ${L2GETH_P2P_BOOTNODES}
+    ports:
+      - ${P2P_PORT:-30303}:${P2P_PORT:-30303}/tcp
+      - ${P2P_PORT:-30303}:${P2P_PORT:-30303}/udp
     depends_on:
       scroll-init:
         condition: service_completed_successfully
@@ -42,6 +45,8 @@ services:
       - geth
       - --datadir
       - /var/lib/l2geth
+      - --port
+      - ${P2P_PORT:-30303}
       - --scroll
       - --cache.noprefetch
       - --networkid
