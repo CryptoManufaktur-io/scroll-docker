@@ -20,7 +20,7 @@ The `./scrolld` script can be used as a quick-start:
 
 `./scrolld up`
 
-The public HTTP API does not expose the `debug` namespace, since it allows rewinding the chain head and profiling. If you really need it, set `EXTRAS=--http.api eth,net,web3,debug,scroll` in `.env`.
+The public HTTP API does not expose the `debug` namespace, since it allows rewinding the chain head and profiling. To re-enable it, set `EXTRAS=--http.api eth,net,web3,scroll,debug` in your untracked `.env` and re-create the container with `./scrolld up`; `EXTRAS` is appended after the built-in flags and the last `--http.api` wins, so no tracked file needs editing.
 
 To update the software, run `./scrolld update` and then `./scrolld up`
 
