@@ -20,6 +20,8 @@ The `./scrolld` script can be used as a quick-start:
 
 `./scrolld up`
 
+The public HTTP API does not expose the `debug` namespace, since it allows rewinding the chain head and profiling. If you really need it, set `EXTRAS=--http.api eth,net,web3,debug,scroll` in `.env`.
+
 To update the software, run `./scrolld update` and then `./scrolld up`
 
 This is Scroll Docker v3.0.0
