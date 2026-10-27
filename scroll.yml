@@ -59,7 +59,7 @@ services:
       - --http.port
       - ${RPC_PORT}
       - --http.api
-      - eth,net,web3,debug,scroll
+      - eth,net,web3,scroll
       - --http.vhosts=*
       - --http.corsdomain=*
       - --ws
